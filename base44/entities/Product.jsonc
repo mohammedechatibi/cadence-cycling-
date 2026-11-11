@@ -1,0 +1,72 @@
+{
+  "name": "Product",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Shown on the shop card and on the payment page"
+    },
+    "tagline": {
+      "type": "string",
+      "description": "One short line under the name"
+    },
+    "description": {
+      "type": "string",
+      "description": "What the buyer is getting"
+    },
+    "price_cents": {
+      "type": "number",
+      "description": "Price in minor units, e.g. 3900 = 39.00. Minimum 50."
+    },
+    "currency": {
+      "type": "string",
+      "default": "EUR",
+      "description": "Display currency only \u2014 the payment provider charges the account currency"
+    },
+    "includes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Short list of what is included, one line each"
+    },
+    "image_urls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Photos shown at the top of the shop card. One photo fills the width; two sit side by side."
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Untick to hide a product from the shop"
+    },
+    "rank": {
+      "type": "number",
+      "description": "Order in the shop"
+    }
+  },
+  "required": [
+    "name",
+    "price_cents"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

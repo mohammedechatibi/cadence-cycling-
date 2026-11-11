@@ -1,0 +1,92 @@
+{
+  "name": "Clip",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Headline shown on the card and the clip page"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "ai",
+        "youtube"
+      ],
+      "enumColors": [
+        "purple",
+        "gray"
+      ],
+      "default": "ai",
+      "description": "AI short played natively, or a YouTube clip played in an embed"
+    },
+    "video_url": {
+      "type": "string",
+      "description": "Direct video file for an AI short"
+    },
+    "video_id": {
+      "type": "string",
+      "description": "YouTube video id for an embedded clip"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "chases",
+        "stunts",
+        "cinematic",
+        "fails",
+        "funny",
+        "compilation"
+      ],
+      "enumColors": [
+        "purple",
+        "blue",
+        "gray",
+        "red",
+        "yellow",
+        "green"
+      ]
+    },
+    "note": {
+      "type": "string",
+      "description": "One line of editorial context"
+    },
+    "rank": {
+      "type": "number",
+      "description": "Position in the curated running order"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Leads the showcase hero"
+    },
+    "channel": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "kind",
+    "category"
+  ],
+  "rls": {
+    "read": {},
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

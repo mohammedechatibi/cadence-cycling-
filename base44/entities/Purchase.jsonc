@@ -1,0 +1,70 @@
+{
+  "name": "Purchase",
+  "type": "object",
+  "properties": {
+    "checkout_id": {
+      "type": "string",
+      "description": "Payment provider checkout id \u2014 the record's identity"
+    },
+    "product_id": {
+      "type": "string"
+    },
+    "product_name": {
+      "type": "string",
+      "description": "Name at the moment of purchase"
+    },
+    "amount_cents": {
+      "type": "number"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "paid"
+      ],
+      "enumColors": [
+        "yellow",
+        "green"
+      ],
+      "default": "pending",
+      "description": "pending until the provider confirms the payment"
+    },
+    "buyer_email": {
+      "type": "string",
+      "description": "Filled from the provider once the payment is confirmed"
+    },
+    "paid_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "checkout_id",
+    "status"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

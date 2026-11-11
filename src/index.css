@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 6%;
+    --foreground: 45 30% 96%;
+    --card: 0 0% 10%;
+    --card-foreground: 45 30% 96%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 45 30% 96%;
+    --primary: 48 100% 52%;
+    --primary-foreground: 0 0% 6%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 45 30% 96%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 45 7% 66%;
+    --accent: 48 100% 52%;
+    --accent-foreground: 0 0% 6%;
+    --destructive: 0 68% 52%;
+    --destructive-foreground: 0 0% 6%;
+    --border: 0 0% 20%;
+    --input: 0 0% 22%;
+    --ring: 48 100% 52%;
+    --chart-1: 48 100% 52%;
+    --chart-2: 45 25% 80%;
+    --chart-3: 0 0% 52%;
+    --chart-4: 38 85% 45%;
+    --chart-5: 0 0% 32%;
+    --radius: 0.25rem;
+    --font-heading: "Fraunces", Georgia, serif;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+    --sidebar-background: 0 0% 8%;
+    --sidebar-foreground: 45 10% 88%;
+    --sidebar-primary: 48 100% 52%;
+    --sidebar-primary-foreground: 0 0% 6%;
+    --sidebar-accent: 0 0% 16%;
+    --sidebar-accent-foreground: 45 30% 96%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 48 100% 52%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 45 30% 96%;
+    --card: 0 0% 9%;
+    --card-foreground: 45 30% 96%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 45 30% 96%;
+    --primary: 48 100% 52%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 13%;
+    --secondary-foreground: 45 30% 96%;
+    --muted: 0 0% 13%;
+    --muted-foreground: 45 7% 66%;
+    --accent: 48 100% 52%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 5%;
+    --border: 0 0% 19%;
+    --input: 0 0% 21%;
+    --ring: 48 100% 52%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    font-feature-settings: "ss01" on, "cv05" on;
+  }
+}
+
+@layer components {
+  .label-mono {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .display-tight {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    font-variation-settings: "SOFT" 0, "WONK" 1;
+  }
+
+  .hairline {
+    border-color: hsl(var(--border));
+  }
+
+  .fade-up {
+    animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Athletic page backdrop: soft accent glows over fine diagonal track lines. */
+  .sport-backdrop {
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(120% 85% at 88% -12%, hsl(var(--accent) / 0.16), transparent 62%),
+      radial-gradient(100% 70% at -10% 0%, hsl(var(--accent) / 0.07), transparent 58%),
+      repeating-linear-gradient(
+        115deg,
+        hsl(var(--accent) / 0.075) 0 1px,
+        transparent 1px 20px
+      );
+    background-attachment: scroll;
+  }
+
+  /* One call-to-action system: mono primary, hairline secondary, dark on yellow. */
+  .cta-primary,
+  .cta-on-accent,
+  .cta-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: var(--radius);
+    padding: 0.75rem 1.25rem;
+    transition: background-color 0.2s ease, color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .cta-primary,
+  .cta-on-accent {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .cta-primary {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .cta-primary:hover {
+    background-color: hsl(var(--foreground));
+    color: hsl(var(--background));
+  }
+
+  .cta-on-accent {
+    background-color: hsl(var(--primary-foreground));
+    color: hsl(var(--primary));
+  }
+
+  .cta-on-accent:hover {
+    background-color: hsl(var(--primary-foreground) / 0.85);
+  }
+
+  .cta-outline {
+    border: 1px solid hsl(var(--foreground) / 0.25);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .cta-outline:hover {
+    border-color: hsl(var(--foreground));
+    background-color: hsl(var(--card));
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

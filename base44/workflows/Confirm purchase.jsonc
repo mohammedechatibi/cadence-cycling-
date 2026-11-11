@@ -1,0 +1,38 @@
+{
+  "name": "Confirm purchase",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "app_payment",
+      "events": [
+        "payment_succeeded"
+      ]
+    }
+  },
+  "description": "After a successful payment, checks every pending order with the payment provider and marks the paid ones as paid.",
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "confirm_purchase",
+      "version": "1.0",
+      "namespace": "base44"
+    },
+    "do": [
+      {
+        "confirm_purchases": {
+          "call": "invoke_server_route",
+          "with": {
+            "path": "/api/confirm-purchases",
+            "method": "POST",
+            "body": {}
+          },
+          "then": "end",
+          "x-base44": {
+            "title": "Confirm paid orders",
+            "description": "Verifies pending orders with the provider"
+          }
+        }
+      }
+    ]
+  }
+}
